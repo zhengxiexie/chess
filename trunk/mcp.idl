@@ -1,0 +1,1795 @@
+#ifndef __MCP_IDL
+#define __MCP_IDL
+
+struct sub_class_t
+{
+	string id;
+	string name;
+	string icon;
+	string content_list[][];
+};
+
+struct class_info_t
+{
+	string id;
+	string name;
+};
+
+struct class_detail_count_t
+{
+	string id;
+	string name;
+	string icon;
+	string count;
+};
+
+struct img_info_t
+{
+	string type;
+	string url;
+};
+
+struct attribute_info_t
+{
+	string name;
+	string content;
+};
+
+struct ios_content_info_t
+{
+	string id;
+	string name;
+	string icon;
+	string type;
+	string itunes_id;
+	string info;
+	string version;
+	string cp_id;
+	string cp_name;
+	string star;
+	string gdate;
+	string mdate;
+	string adapt;
+	string url;
+	string jump_url;
+	string size;
+	string now_price;
+	string original_price;
+	string rating;
+	string count;
+	string crt_rating;
+	string crt_count;
+	string language;
+	string img_list[];
+	class_info_t class_info[];
+};
+
+struct game_brief_info_t{
+	string info_type;           //资讯类型 1-公告 2-新闻 3-活动 4-攻略
+	string info_id;
+	string info_title;
+	string info_datetime;
+	string type_name;
+    string game_type;
+};
+
+struct game_info_t{
+	string info_type;
+	string info_id;
+	string c_id;
+	string info_title;
+	string info_content;
+	string info_date;
+	string type_name;
+    string game_type;           //游戏类型 0-网游 1-单机 2-无对应游戏
+};
+
+//add by zhengxie
+struct pub_prop_info_t{
+	string prop_url;
+	string name;
+	string color;
+};
+
+struct game_info_t_hall{
+	string info_type;
+	string info_id;
+	string c_id;
+	string info_title;
+	string info_content;
+	string info_date;
+	string type_name;
+    string game_type;           //游戏类型 0-网游 1-单机 2-无对应游戏
+	string news_source;
+};
+
+struct online_game_info_t
+{
+	string id;
+	string name;
+	string icon;
+    string thumb;
+	string type;
+	string info;
+	string version;
+	string system_req;
+	string cp_id;
+	string cp_name;
+	string star;
+	string popularity;
+	string language;
+	string gdate;
+	string mdate;
+	string ldate;
+	string url;
+	string size;
+	string label_list[];
+	string img_list[];
+	string apk_flag; //add by zhengxie
+	string editor_recom; //add by zhengxie
+	class_info_t class_info[];
+	attribute_info_t attribute_list[];
+  string pub_prop_ids;
+};
+
+struct grab_info_t
+{
+	uint32_t id;
+	string c_id;
+	string name;
+	uint32_t amount;
+	uint32_t send_amount;
+	string create_time;
+	string start_time;
+	string end_time;
+	string info;
+	string num;
+};
+
+//2013.05.23 add by zhengxie
+struct user_grab_number_t
+{
+	uint32_t grab_id;								//抢号ID
+	string num;										//抢到的号码
+	string c_id;
+	string name;
+	string create_time;
+	string start_time;
+	string end_time;
+	string info;
+};
+
+//add by zhengxie
+struct mobile_music_info_t
+{
+	string ring_id;
+	string name;
+	string singer;
+	string bell_id;
+	string song_id;
+	string cp_id;
+	string date;
+	string dolby_flag;
+	string status;
+};
+
+//add by zhengxie
+struct pt_game_basic_info_t
+{
+	string game_id;
+	string name;
+	string app_key;
+	string app_secret;
+	string notify_url;
+};
+
+//add by zhengxie
+/*struct championship_download_t*/
+//{
+	//string package_name;
+	//string version_code;
+	//string download_url;
+	//string channel_info;
+//};
+
+//add by zhengxie
+
+struct calender_info_t
+{
+	string id;
+	string title;
+	uint32_t type;
+	string c_id;
+	string date;
+};
+
+struct soft_info_t
+{
+	string type_id;
+	string id;
+	string name;
+	string icon;
+	string preview;
+	string version;
+	string size;
+	string pop;
+	string adapt;
+	string date;
+	string froms;
+	string info;
+	string down_url;
+    string star;
+	//string classid_name;
+	//string jump_url;
+};
+
+struct theme_info_t
+{
+	string type_id;
+	string id;
+	string name;
+	string icon;
+	string preview;
+	string size;
+	string pop;
+	string adapt;
+	string date;
+	string froms;
+	string info;
+	string down_url;
+	//string classid_name;
+};
+
+struct music_info_t
+{
+	//string type_id;
+	string music_id;
+	string songname;
+	string area_id;
+	string area_name;
+	string cp_id;
+	string cp_name;
+	string language_id;
+	string language;
+	string publish_date;
+	string intro;
+	string lyric_writer;
+	string composer;
+	string price;
+	string discount;
+	string download_base;
+	string lyric_txt;
+};
+
+// [s] add by gwj for new_refactory
+struct cp_info_t
+{
+    string id;
+    string name;
+};
+
+struct grant_detail_t
+{
+	string id;
+	string grant_time;
+	string valid_time;
+	string modify_time;
+};
+
+struct download_detail_t
+{
+    string id;
+    string url;
+    string baidu_url;
+    string url_type;
+    string media_format;
+    string size;
+    string mtype;
+    string charge_id;
+    string charge_value;
+    string apk_flag; //add by zhengxie
+    string channel_info; // add by gwj
+    string channel_id;   // add by gwj
+
+    string package_name;
+    string int_version;
+    string string_version;
+    string sdk_version;
+    string apk_md5;
+};
+
+struct championship_info_t
+{
+	string name;
+	string game_name;
+	string union_start_action;
+	string has_account;
+	string c_id;
+	string log_date;
+	string channel_info;
+	string start_time;
+	string end_time;
+	string join_num;
+	string award;
+	string rule;
+	string total_coins;
+	string pic_url;
+	string enable;
+	//add by zhengxie 2013.10.15 for daibin
+	string top_award;
+	download_detail_t championship_download_list[];
+};
+
+struct content_basic_info_t
+{
+        string id;
+        string name;
+        string type;
+        string ext_id;
+        string abstract_;
+        string version;
+        string method;
+        string star;
+        string network;
+        string code;
+        string log_date;
+        string mod_date;
+        string dft_charge_type;
+        string dft_charge_val;
+        string enName;
+        string language;
+        string adapt;
+        string package_name;
+        string version_appinfo;
+        string sdk_version;
+        string version_code;
+        string ptype_0;
+        string ptype_1;
+        string ptype_2;
+        string ptype_3;
+        string ptype_4;
+        string pub_props[];
+		//add by zhengxie
+		pub_prop_info_t pub_prop_info[];
+
+        string union_start_action;
+        string has_account;
+		//add by zhengxie
+		string editor_recom;
+		string show_highspeed;
+		string bind_resource_id;
+
+        class_info_t class_info[];
+        img_info_t img_info[];
+        cp_info_t cp_info;
+        grant_detail_t grant_info;
+};
+
+struct content_detail_t
+{
+        string id;
+        string name;
+        string type;
+        class_info_t class_info[];
+        img_info_t img_info[];
+        string ext_id;
+        string abstract_;
+        string version;
+        string method;
+        string star;
+        string network;
+        string code;
+        string log_date;
+        string mod_date;
+        string dft_charge_type;
+        string dft_charge_val;
+        string enName;
+        string language;
+        string adapt;
+        string package_name;
+        string version_appinfo;
+        string sdk_version;
+        string version_code;
+        string ptype_0;
+        string ptype_1;
+        string ptype_2;
+        string ptype_3;
+        string ptype_4;
+        string pub_props[];
+		//add by zhengxie
+		pub_prop_info_t pub_prop_info[];
+
+        string union_start_action;
+        string has_account;
+		//add by zhengxie
+		string editor_recom;
+		string show_highspeed;
+
+        cp_info_t cp_info;
+        grant_detail_t grant_info;
+        download_detail_t download_info[];
+};
+
+struct mcp_content_in_param
+{
+    string type_id;
+    string class_id;
+    string weight_order;
+    string label_id;
+    string img_type;
+    string column_id;
+    string content_id;
+    string channel_id;
+    string channel_info;
+};
+
+struct once_consume_goods_t
+{
+    string orderid;
+    string itemid;
+    string ordertime;
+    string udid;
+};
+
+struct game_news_entire_info_t
+{
+    game_info_t news_info;
+    content_basic_info_t game_basic_info;
+    download_detail_t game_download_list[];
+};
+
+struct game_news_info_t
+{
+    string news_id;
+    string news_type;
+    string news_time;
+    string news_content;
+    string news_title;
+    string news_type_name;
+
+    string game_id;
+    string game_type;
+    string game_name;
+    img_info_t game_img_info[];
+};
+
+struct netgame_activity_info_t
+{
+    string act_id;
+    string act_title;
+    string act_content;
+    string act_logdate;
+    img_info_t act_img_info[];
+    game_news_info_t game_news_list[];
+};
+
+struct column_info_t
+{
+    string id;
+    string name;
+    string type_id;
+};
+
+struct game_ext_update_info_t
+{
+	string c_id;
+    string update_url;
+    string diff_pkg_size;
+    string channel_info;
+    string channel_id;
+};
+
+struct game_update_download_info
+{
+    content_basic_info_t basic_info;
+    download_detail_t download_info[];
+    game_ext_update_info_t update_info[];
+};
+
+struct game_content_download_info_t
+{
+    content_basic_info_t basic_info;
+    download_detail_t download_info[];
+};
+
+struct game_dev_vir_currency_info
+{
+    string id;
+    string name;
+    string game_id;
+    string exchage_rate;
+    string icon;
+    string desc;
+};
+
+// [e] add by gwj for new_refactory
+struct question_type_name_t
+{
+	string id;
+	string name;
+};
+
+struct user_question_answer_t
+{
+	string id;
+	string app_id;
+	string question;
+	string answer;
+	string status;
+	string date_q;
+	string date_a;
+};
+
+struct qp_activity_award_t
+{
+	string id;
+	string name;
+	string pic_url;
+};
+
+struct qp_activity_t
+{
+	string id;
+	string c_id;
+	string title;
+	string info;
+	string rules;
+	int64_t start_time;
+	int64_t end_time;
+	string icon_url;
+	string status;
+	string act_info;
+	qp_activity_award_t qp_activity_award_list[];
+};
+
+struct qp_activity_person_t
+{
+	string c_id;
+	string person_num;
+};
+
+struct person_all_award_info_t
+{
+	string id;
+	string icon;
+	string name;
+	int64_t  date;
+	string type;
+};
+
+struct person_award_info_t
+{
+	string id;
+	string user_id;
+	string commodity_id;
+	string name;
+	string kudou;
+	string priority;
+	string icon;
+	int32_t rank;
+};
+
+struct award_info_t
+{
+	string type;
+	string award_id;
+	string name;
+	string func_desc;
+	string prize_name;
+	string icon;
+	string prize_url;
+};
+
+struct tie_ba_t
+{
+	string id;
+	string name;
+	string icon;
+};
+
+service mcp
+{
+	void get_test(  uint32_t info_type,
+			uint32_t unit_num,
+			uint32_t unit_times,
+			out uint32_t  info_count,
+			out string info_id[],
+			out string info_name[],
+			out uint32_t phone_count[]);
+
+	void get_phone_maker_plat(  uint32_t info_type,
+			uint32_t unit_num,
+			uint32_t unit_times,
+			out uint32_t  info_count,
+			out string info_id[],
+			out string info_name[],
+			out uint32_t phone_count[]);
+	//    void get_content_info(string content_id,string info_id, uint32_t info_type, out string info_list[ ]);
+
+	void get_content_list_from_classID (
+			string class_id,                  //类别id
+			string content_type_id,           //资源类别id(游戏，主题……)
+			uint32_t priority,                //优先级设定
+			string info_id,                   //可选信息ID（可为空）
+			uint32_t info_type,               //资源类型
+			string img_size,                  //预览图分辨率
+			uint32_t unit_num,                //数据单位
+			uint32_t unit_times,              //数据位次
+			uint32_t for_adapt,               //是否只取适配成功信息 1:只取适配资源信息 0:获取所有资源信息
+			out uint32_t count,               //资源列表总数
+			out string content_list[ ][ ]);   //资源信息列表
+
+	void get_content_list_from_typeID (
+			string content_type_id,           //资源类别id(游戏，主题……)
+			uint32_t priority,                //优先级设定
+			string info_id,                   //可选信息ID（可为空）
+			uint32_t info_type,               //资源类型
+			string img_size,                  //预览图分辨率
+			uint32_t unit_num,                //数据单位
+			uint32_t unit_times,              //数据位次
+			out uint32_t count,               //资源列表总数
+			out string content_list[ ][ ]);   //资源信息列表
+
+	void get_content_class(
+			string content_type_id,    //资源类型ID
+			out string content_class_id[ ],      //类别ID
+			out string content_class_name[ ] );  //类别名称
+
+	void get_content_class_name(
+			string class_id,            //类别ID
+			out string class_name);     //类别名称
+
+	void get_content_diy_col_name(
+			string diycol_id,          //栏目ID
+			out string diycol_name);   //栏目名称
+
+	void get_content_info(
+			string content_id,           //资源ID
+			uint32_t content_ext,        //基本/扩展信息区分
+			string info_id,              // 可选信息ID（可为空）
+			uint32_t info_type,          // 资源类型
+			out string info_list[ ] );   // 资源信息列表
+
+	void get_download_info(
+			string content_id,           //资源id
+			string info_id,              //可选信息ID
+			uint32_t info_type,          //资源类型
+			out string download_info [ ][ ] );//下载信息
+
+	void get_content_list(
+			uint32_t priority,            //优先级
+			string info_id,               //可选信息ID（可为空）
+			uint32_t info_type,           //资源类型
+			uint32_t unit_num,            //数据单位
+			uint32_t unit_times,          //数据位次
+			out uint32_t count,           //资源总数
+			out string content_list[ ][ ] ); //资源信息列表
+
+	void get_content_list_from_part(
+			string part_id,               //根据指定的栏目id，返回资源信息列表
+			string content_type_id,       //资源类别id(游戏，主题……)
+			string info_id,               //可选信息ID（可为空）
+			uint32_t info_type,           //资源类型
+			uint32_t unit_num,            //数据单位
+			uint32_t unit_times,          //数据位次
+			out uint32_t count,           //资源总数
+			out string content_list[ ][ ] ); //资源信息列表
+
+	void get_content_count_from_class(                     //
+			string class_id,                  //类别或类型ID
+			uint32_t class_type,              //1: class_id; 2: column_id, 3:type_id
+			out string class_name,            //类别名称
+			out uint32_t count );             //资源计数
+
+	void get_phone_info(
+			string user_info,                  //UA信息/pid（机型ID）
+			uint32_t user_type,                //指定user_info 类型 0-UA 1-pid
+			uint32_t phone_info_type,          //指定机型信息类型 0-基本 1-扩展
+			out string phone_info[ ][ ] );     //机型信息列表
+
+    void get_phone_uaJson(string ua, out string ua_Json[]);
+    void init_phone_uaJson_map(string input, out string output[]);
+
+	void get_phone_type_from_ID(
+			string info_id,                     //厂商/平台ID
+			uint32_t  id_type,                  //输入的ID类型
+			string head_word,                   //机型首位字母
+			uint32_t unit_num ,                 //此次希望取得的数据单位
+			uint32_t unit_times ,               //此次取得的单位数据的位次
+			out uint32_t phone_count,           //手机总数
+			out string phone_id[ ],             //手机机型ID列表
+			out string phone_name[ ] );         //手机机型名称列表
+
+	void get_phone_headword_from_maker(
+			string maker_id,                    //厂商ID
+			uint32_t unit_num,                  //此次希望取得的数据单位
+			uint32_t unit_times,                 //此次取得的单位数据的位次
+			out uint32_t headword_count,        //机型首字母列表总数
+			out string head_word[ ] );              //机型首字母列表
+
+	void search_phone_info(
+			string key,                         //用户输入的关键字
+			uint32_t unit_num,                  //此次希望取得的数据单位
+			uint32_t unit_times,                //此次取得的单位数据的位次
+			out uint32_t phone_count,           //符合手机个数
+			out string phone_id [ ],            //手机ID
+			out string phone_name[ ],           //手机全名
+			out string brand_id[ ] );           //厂商ID
+
+	void get_carriers_info_from_ip(
+			string ip_addres,                   //IP地址
+			out uint32_t carriers_name,         //运营商
+			out uint32_t owner_place  );        //归属省份
+
+	void get_phone_info_from_maker_plat(
+			string maker_id,                    //厂商ID
+			string plat_id,                     //平台ID
+			uint32_t unit_num,                  //此次希望取得的数据单位
+			uint32_t unit_times,                //此次取得的单位数据的位次
+			out uint32_t phone_count,           //手机总数
+			out string phone_id[],              //手机机型ID列表
+			out string phone_name[]  );         //手机机型名称列表
+
+	void get_url_info_by_id(
+			string id,							//资源id
+			out string url_info[]    );			//url信息列表
+
+	void get_url_info_by_class_id(				//现在此函数没用
+			string class_id,
+			uint32_t unit_num,
+			uint32_t unit_times,
+			out uint32_t count,
+			out string url_info[][]     );
+
+	void get_url_info_by_column_id(				//现在此函数没用
+			string column_id,
+			uint32_t unit_num,
+			uint32_t unit_times,
+			out uint32_t count,
+			out string url_info[][]     );
+
+	void get_content_list_from_phone(
+			string p_id,						//机型ID
+			uint32_t priority,					//1-优先级，2-录入时间
+			uint32_t type,						//1-主题
+			uint32_t unit_num,					//取单位数
+			uint32_t unit_times,				//单位次数
+			out uint32_t count,					//返回个数
+			out string content_list[][]	);		//资源信息列表
+
+	void get_content_list_by_rank(
+			string content_type,   //资源类型
+			string class_id,       //资源类别
+			uint32_t p_type,       //排行方式 1-日 2-周 3-月 4-年 5-总
+			uint32_t unit_num,     //取单位数
+			uint32_t unit_times,   //取单位次数
+			string info_id,        //适配ID
+			uint32_t info_type,    //适配类型
+			uint32_t for_adapt,	   //是否只取适配成功资源信息
+			out int32_t count,     //符合查询资源总数
+			out string content_list[][]	);
+
+	void get_label_by_content_id(
+			string content_id,					//资源id
+			out uint32_t result,				//结果
+			out string label_list[][2] ); 		//标签信息列表
+
+	void get_content_list_by_label(
+			string label_id,					//标签ID
+			uint32_t unit_num,					//取单位数
+			uint32_t unit_times,				//单位次数
+			string info_id,						//适配ID
+			uint32_t info_type,					//适配类型
+			uint32_t for_adapt,          		//是否只取适配成功资源信息
+			out uint32_t count,					//返回个数
+			out string content_list[][]	);		//信息资源列表
+
+	void get_topic_info(
+			string content_type,				//资源类型
+			uint32_t unit_num,					//取单位数
+			uint32_t unit_times,				//单位次数
+			out uint32_t count,					//返回个数
+			out string topic_list[][2]	);		//专题信息列表
+
+	void get_content_count_by_class(
+			string class_id,					//资源类别（可多个，逗号分隔）
+			string info_id,						//适配ID
+			uint32_t info_type,					//适配类型
+			out int32_t count[]		);			//每个类别对应资源个数
+
+	void get_content_img(
+			string content_id,					//资源ID
+			uint32_t img_type,					//图片类型
+			out int32_t count,					//返回个数
+			out string img_url[]		);		//图片url
+
+	void get_label_name_by_id(
+			string label_id,					//标签ID
+			out string label_name		);		//标签名
+
+	void get_content_list_by_date(
+			string content_type,				//资源类别ID
+			uint32_t unit_num,					//取单位数
+			uint32_t unit_times,				//单位次数
+			string info_id,						//适配ID
+			uint32_t info_type,					//适配类型
+			uint32_t for_adapt,					//否只取适配成功资源信息
+			out int32_t result,					//结果
+			out string content_list[][]	);		//资源信息列表
+
+	void get_soft_info_by_id(
+			string soft_id,						//资源id
+			out int32_t result,					//返回结果
+			out string soft_info[] 		);		//软件信息列表
+
+	void get_android_theme_by_id(
+			string id,							//资源ID
+			out int32_t result,					//返回结果
+			out string info[]          );		//安卓主题信息
+
+
+	void get_mcp_stat( out int32_t stat[] );
+
+	void get_col_list_by_topic(
+			string topic_id,					//主题ID
+			uint32_t page,						//数据单位
+			uint32_t page_size,					//数据位次
+			out int32_t count,					//该主题包含的自定义栏目数量
+			out string topic_name,				//主题名称
+			out string topic_img,				//主题图片url
+			out string topic_intro,				//主题简介
+			out string log_date,				//记录时间
+			out string before_topic,			//前一主题id
+			out string before_name,				//前一注意名称
+			out string next_topic,				//后一主题id
+			out string next_name,				//后一主题名称
+			out string col_id_list[]);			//属于该主题的自定义栏目id列表
+	//out content_info_t content_list[][]);
+
+
+	void get_soft_list_by_col_id(
+			string col_id,						//自定义栏目ID
+			string type_id,						//软件类型
+			uint32_t page,						//数据单位
+			uint32_t page_size,					//数据位次
+			out int32_t count,					//返回个数
+			out string col_name,				//自定义栏目名称
+			out string soft_list[][]	);		//该自定义栏目下的软件信息列表
+
+	void get_soft_list_by_class_id(
+			string class_id,					//类别ID
+			string type_id,						//类型ID
+			uint32_t orderby,					//排序
+			uint32_t page,						//数据单位
+			uint32_t page_size,					//数据位次
+			out int32_t count,					//返回个数
+			out string class_name,				//类别名称
+			out string class_icon,				//类别图标url
+			out string soft_list[][]        );	//软件信息列表
+
+	void get_android_theme_by_col_id(
+			string col_id,						//自定义栏目ID
+			string type_id,						//资源类型ID（固定写16，百度应用主题的类型ID）
+			uint32_t page,						//数据单位
+			uint32_t page_size,					//数据位次
+			out int32_t count,					//资源列表总数
+			out string col_name,				//自定义栏目名称
+			out string theme_list[][]        );	//主题信息列表
+
+	void get_android_theme_by_class_id(
+			string class_id,					//类别ID
+			string type_id,						//类型ID
+			uint32_t orderby,					//排序
+			uint32_t page,						//数据单位
+			uint32_t page_size,					//数据位次
+			out int32_t count,					//返回个数
+			out string class_name,				//类别名称
+			out string class_icon,				//类别图标url
+			out string theme_list[][]        );	//主题信息列表
+
+
+	void get_topic_list_by_type(
+			string type_id,						//资源类型ID
+			uint32_t page,						//数据单位
+			uint32_t page_size,					//数据位次
+			out int32_t count,					//返回个数
+			out string topic_list[][]	);		//专题信息列表
+
+	void get_sub_class_by_class(				//暂时未使用
+			string class_id,
+			uint32_t page,
+			uint32_t page_size,
+			out int32_t cooooooount,
+			out sub_class_t sub_list[]	);
+
+	void mcp_content_common_init(				//暂时未使用
+			out int32_t result		);
+
+	void get_phone_area_by_phone_num(
+			string phone_num,					//手机号码
+			out string numseg,					//手机号段（前7位）
+			out string result,					//返回结果0查询成功，-1查询失败
+			out string type,					//省份信息0合法，1非法
+			out string oid,						//OID
+			out string provice,					//省份代码
+			out string city,					//城市名称
+			out string code,					//城市编码
+			out string enabled  );				//是否有效
+
+	void reload_config_by_id(					//
+			uint32_t reload_id,					//
+			out int32_t result	);				//
+
+	void get_ios_content_by_id(
+			string id,							//资源ID
+			out int32_t result,					//返回结果
+			out ios_content_info_t	info );		//ios应用信息
+
+	void get_ios_content_by_class_id(
+			string class_id,					//类别ID
+			string type_id,						//类型ID
+			uint32_t orderby,					//排序
+			uint32_t page,						//数据单位
+			uint32_t page_size,					//数据位次
+			uint32_t for_free = default(0),		//是否免费
+			out int32_t count,					//返回个数
+			out ios_content_info_t info_list[] );	//ios资源信息列表
+
+	void get_ios_content_by_cp_id(
+			string cp_id,						//CP ID
+			string type_id,						//类型ID
+			uint32_t orderby,					//排序
+			uint32_t page,						//数据单位
+			uint32_t page_size,					//数据位次
+			out int32_t count,					//返回个数
+			out string cp_name,					//CP名称
+			out ios_content_info_t info_list[] );	//ios资源信息列表
+
+	void get_ios_content_by_col_id(
+			string column_id,					//自定义栏目ID
+			string type_id,						//类型ID
+			uint32_t orderby,					//排序
+			uint32_t page,						//数据单位
+			uint32_t page_size,					//数据位次
+			out int32_t count,					//返回个数
+			out string name,					//自定义栏目名称
+			out ios_content_info_t info_list[] );	//ios资源信息列表
+
+	void get_ios_content_by_rank(
+			string type_id,							//类型ID
+			uint32_t p_type,						//排序类型
+			uint32_t page,							//数据单位
+			uint32_t page_size,						//数据位次
+			uint32_t for_free = default(0),			//是否免费
+			out int32_t count,						//返回个数
+			out ios_content_info_t info_list[] );	//ios资源信息列表
+
+	void get_class_list_by_type_id(
+			string type_id,							//类型ID
+			out int32_t count,						//返回个数
+			out class_detail_count_t class_list[]		);//类别信息列表
+
+	void get_ios_probably_like_list_by_id(
+			string id,								//ios资源ID
+			uint32_t list_cnt,						//期望返回个数
+			uint32_t type,							//可能喜欢的类别（1-cp_id与所给id的相同，2-class_id与所给id的相同，3-cp_id和class_id都与所给的id的相同）
+			out ios_content_info_t info_list[]  );	//返回的ios资源列表
+
+	void get_game_info_list(
+			string info_type,									//资讯类型
+            string game_type,                                   ////游戏类型 0-网游 1-单机 2-无对应游戏
+			uint32_t page,										//数据单位
+			uint32_t page_size,									//数据位次
+			out int32_t count,									//返回个数
+			out game_brief_info_t game_info_list[]			);	//游戏资讯简要列表
+
+	void get_game_info(
+			string info_id,										//游戏资讯id
+			out game_info_t game_info);							//游戏资讯信息
+
+	void get_game_info_list_by_c_id(
+			string c_id,										//游戏资源id
+			string info_type,									//游戏资讯类型
+			uint32_t page,										//数据单位
+			uint32_t page_size,									//数据位次
+			out int32_t count,									//返回个数
+			out game_brief_info_t game_info_list[]          );	//游戏资讯简要列表
+
+	void get_game_score_by_imei_or_uid(							//此函数暂未使用
+			string id,
+			string c_id,
+			string type,
+			out string score        );
+
+	void get_appinfo_by_packagename(							//此函数暂未使用
+			string packagename,									//
+			out string package_info[]  );						//
+
+	void get_score_by_packagename_and_versioncode(				//此函数暂未使用
+			string packagename_versioncode_json,
+			out string scores_json);
+
+	void get_content_info_by_packagename_and_versioncode(
+			string packagename,									//安卓游戏包名
+			string versioncode,									//安卓游戏version code
+			out string info_list[]        );					//安卓游戏信息
+
+	void get_content_info_by_packagename(
+			string packagename,									//安卓游戏包名
+			out string info_list[]        );					//安卓游戏信息
+
+	void get_online_game_by_id(
+			string id,											//资源id
+			out int32_t result,									//返回结果（0-正常，1-异常）
+			out online_game_info_t info		);					//网游信息
+
+	void get_online_game_by_class_id(
+			string class_id,									//类别ID
+			string type_id,										//类型ID
+			uint32_t orderby,									//排序
+			uint32_t page,										//数据单位
+			uint32_t page_size,									//数据位次
+			out int32_t count,									//返回个数
+			out string class_name,								//类别名称
+			out string class_icon,								//类别icon url
+			out online_game_info_t info_list[] );				//网游信息列表
+
+	void get_online_game_by_cp_id(
+			string cp_id,										//CP ID
+			string type_id,										//类型ID
+			uint32_t orderby,									//排序
+			uint32_t page,										//数据单位
+			uint32_t page_size,									//数据位次
+			out int32_t count,									//返回个数
+			out string cp_name,									//CP名称
+			out online_game_info_t info_list[] );				//网游信息列表
+
+	void get_online_game_by_col_id(
+			string column_id,									//自定义栏目ID
+			string type_id,										//类型ID
+			uint32_t orderby,									//排序方式
+			uint32_t page,										//数据单位
+			uint32_t page_size,									//数据位次
+			out int32_t count,									//返回个数
+			out string name,									//自定义栏目名称
+			out online_game_info_t info_list[] );				//网游信息列表
+
+	void get_online_game_by_rank(
+			string type_id,										//类型ID
+			uint32_t p_type,									//排序方式
+			uint32_t page,										//数据单位
+			uint32_t page_size,									//数据位次
+			out int32_t count,									//返回个数
+			out online_game_info_t info_list[] );				//网游信息列表
+
+	void get_grab_list_by_type(									//获得指定类型的抢号信息列表
+			string type_id,										//类型ID
+			uint32_t page,										//数据单位
+			uint32_t page_size,									//数据位次
+			out int32_t result,									//返回结果
+			out grab_info_t grab_list[] 		);				//抢号信息列表
+
+	void get_grab_info_by_c_id(
+			string c_id,										//资源ID
+			out int32_t result,									//返回结果
+			out grab_info_t grab_list[]			);				//抢号信息列表
+
+	void get_grab_info_by_id(
+			uint32_t id,										//抢号信息ID
+			out int32_t result,									//返回结果
+			out grab_info_t info				);				//抢号信息列表
+
+	void user_grab_num(
+			string user_id,										//用户ID
+			uint32_t grab_id,									//抢号ID
+			string push_channelid,								//add by zhengxie
+			string push_userid,									//add by zhengxie
+			out int32_t result,									//返回结果
+			out string num						);				//抢到的号码
+
+    void user_grab_num_pre(
+            string user_id,
+            uint32_t grab_id,
+            string push_channelid,
+            string push_userid,
+            out int32_t result,
+            out string num                      );
+
+	void set_user_rating(
+			string user_id,										//用户ID
+			string c_id,										//资源ID
+			uint32_t rating,									//用户评分
+			out int32_t result					);				//返回结果
+
+	void get_user_rating(
+			string user_id,										//用户ID
+			string c_id,										//资源ID
+			out int32_t result					);				//返回结果
+
+	void get_calender_list(
+			out int32_t result,									//返回结果
+			out calender_info_t calender_list[]	);				//日历信息列表
+
+	void get_content_list_by_mixed_topic_id(
+			string topic_id,									//专题ID
+			uint32_t page,										//数据单位
+			uint32_t page_size,									//数据位次
+			out uint32_t count_soft,							//返回软件个数
+			out uint32_t count_theme,							//返回主题个数
+			out uint32_t count_song,							//返回音乐个数
+			out soft_info_t soft_info_list[],					//软件列表
+			out theme_info_t theme_info_list[],					//主题列表
+			out music_info_t music_info_list[]					//音乐列表
+			);
+
+	void get_content_list_by_mixed_topic_id1(
+			string topic_id,
+			uint32_t page,
+			uint32_t page_size,
+			out uint32_t col_num1,
+            out uint32_t col_num2,
+            out uint32_t col_num3,
+            out string col_id[],
+            out string col_name[],
+            out soft_info_t soft_info_list[],                   //软件列表
+            out theme_info_t theme_info_list[],                 //主题列表
+            out string music_id[]                  //音乐id列表
+            );
+
+    void get_user_grab_num(
+                    string user_id,
+                    uint32_t grab_id,
+                    out int32_t result,
+                    out string num,
+                    out int32_t occupy);
+
+    void set_recently_played(
+                    string u_id,
+                    string c_id,
+                    out int32_t result);
+
+    void get_recently_played_by_uid(
+                    string u_id,
+                    out uint32_t count,
+                    out string info_list[][]);
+
+    void add_game_to_favorite(
+                    string u_id,
+                    string c_id,
+                    out uint32_t result);
+
+    void get_favoraite_by_uid(
+                    string u_id,
+                    out uint32_t count,
+                    out string info_list[][]);
+
+    void get_H5_latest_on_shelf_by_date(
+                    uint32_t unit_num,
+                    uint32_t unit_times,
+                    out uint32_t count,
+                    out string info_list[][]);
+
+	void get_H5_latest_on_shelf_by_date_and_type(
+                    uint32_t unit_num,
+                    uint32_t unit_times,
+					string content_type,
+                    out uint32_t count,
+                    out string info_list[][]);
+    void get_H5_info_list_by_col_id(
+                    uint32_t unit_num,
+                    uint32_t unit_times,
+                    string col_id,
+                    out uint32_t count,
+                    out string info_list[][]);
+
+    //获得h5游戏的image url信息和收藏信息
+    void get_imgurls_and_favorite_by_uid_cid(
+                    string uid,                        //用户id
+                    string cid,                        //资源id
+                    out string icon_url,               //icon url
+                    out string xc_url1,                //宣传图1 url
+                    out string xc_url2,                //宣传图2 url
+                    out uint32_t count,                //详情图数量
+                    out string xq_url[],               //详情图url列表
+                    out uint32_t is_favorite);         //是否被收藏
+
+    //获得指定个数的h5游戏
+    void get_random_h5_games(
+                    uint32_t count,                    //个数
+                    out uint32_t actual_count,         //实际返回个数
+                    out string info_list[][]);         //游戏信息
+
+    void get_info_by_col_id_and_type_id(
+                    string col_id,
+                    string type_id,
+                    uint32_t page,
+                    uint32_t page_size,
+                    out uint32_t count,
+                    out string info_list[][]
+                    );
+
+    void get_info_by_col_id(
+                    string col_id,
+                    uint32_t page,
+                    uint32_t page_size,
+                    out string col_name,
+                    out string type_id,
+                    out uint32_t count,
+                    out string info_list[][]
+                    );
+
+    void get_soft_by_date_or_star(
+                    uint32_t page,
+                    uint32_t page_size,
+                    uint32_t orderby,
+                    uint32_t for_adapt,
+                    string except_class_ids,
+                    out uint32_t count,
+                    out string soft_list[][]
+                    );
+
+    void get_star_by_cid_and_type(
+                    string c_id,
+                    string type_id,
+                    out uint32_t star
+                    );
+
+	void get_content_list_from_classID_with_weight(
+			string class_id,                  //类别id
+			string content_type_id,           //资源类别id(游戏，主题……)
+			uint32_t priority,                //优先级设定
+			string info_id,                   //可选信息ID（可为空）
+			uint32_t info_type,               //资源类型
+			string img_size,                  //预览图分辨率
+			uint32_t unit_num,                //数据单位
+			uint32_t unit_times,              //数据位次
+			uint32_t for_adapt,               //是否只取适配成功信息 1:只取适配资源信息 0:获取所有资源信息
+            int32_t weight_type,             //权重类型 1-分类 2-H5首页最新(单机和网游) 3-排行最新(单机) 4-下载最多 5-好评最多
+			out uint32_t count,               //资源列表总数
+			out string content_list[ ][ ]);   //资源信息列表
+
+
+// [s] add by gwj for new_refactory
+    void get_content_with_download_info(
+            mcp_content_in_param in_param,
+            uint32_t unit_num,
+            uint32_t unit_times,
+            out uint32_t count,
+            out content_detail_t result_list[]
+    );
+
+    ///////////////////////////////////////////////////////// Interfaces after Game-Center  ////////////////////////////////////////////////////////////
+
+    void get_game_contents_count(
+            string type_id,
+            string class_id,
+            string label_id,
+            string column_id,
+            out uint32_t count
+    );
+
+    void get_columns_info(
+        string type_id,
+        string column_id,
+        out uint32_t count,
+        out column_info_t result_list[]
+    );
+
+    void get_once_consume_goods_list(
+            string udid,
+            string app_id,
+            out uint32_t itemcount,
+            out once_consume_goods_t items[]
+    );
+
+    void get_game_info_list_ext(
+            string info_id,
+            string c_id,
+            string info_type,
+            string game_type,
+            string date_limit,
+            uint32_t page,
+            uint32_t page_size,
+            out int32_t count,
+            out game_info_t game_info_list[]
+            );
+
+    void add_new_download_game_by_uid(
+            string u_id,
+            string game_id,
+            out int32_t ret_code
+    );
+
+    void get_download_games_count_by_uid(
+            string u_id,
+            out uint32_t count
+    );
+
+    void is_user_has_relation_with(
+        string u_id,
+        string c_id,
+        string c_type,   // 0-收藏游戏;1-下载游戏;2-收藏攻略
+        out int32_t has_relation
+    );
+
+    void get_download_games_info_by_uid(
+            string u_id,
+            string img_types,
+            string filter, // {`channel_info`:`XXX;XXX;XXX`,`channel_id`:`XXX;XXX;XXX`}
+            uint32_t unit_num,
+            uint32_t unit_times,
+            out uint32_t count,
+            out game_content_download_info_t result_list[]
+            //out content_detail_t result_list[]
+    );
+
+    void add_new_guide_by_uid(
+            string u_id,
+            string guide_id,
+            out int32_t ret_code
+    );
+
+    void remove_guide_by_uid(
+            string u_id,
+            string guide_id,
+            out int32_t ret_code
+    );
+
+    void get_guides_count_by_uid(
+            string u_id,
+            out uint32_t count
+    );
+
+    void get_guides_info_by_uid(
+            string u_id,
+            uint32_t unit_num,
+            uint32_t unit_times,
+            out uint32_t count,
+            out game_info_t result_list[]
+    );
+
+    void add_new_favorite_by_uid(
+            string u_id,
+            string favorites_id,
+            out int32_t ret_code
+    );
+
+    void remove_favorite_by_uid(
+            string u_id,
+            string favorites_id,
+            out int32_t ret_code
+    );
+
+    void get_favorites_count_by_uid(
+            string u_id,
+            out uint32_t count
+    );
+
+    void get_favorites_info_by_uid(
+            string u_id,
+            string img_types,
+            string filter, // {`channel_info`:`XXX;XXX;XXX`,`channel_id`:`XXX;XXX;XXX`}
+            uint32_t unit_num,
+            uint32_t unit_times,
+            out uint32_t count,
+            out game_content_download_info_t result_list[]
+            //out content_detail_t result_list[]
+    );
+
+	//2013.05.15 add by zhengxie
+	void get_grab_list(
+			string type_id,
+			string c_id,
+			uint32_t id,
+			string user_id,
+			uint32_t page,
+			uint32_t page_size,
+			out int32_t count,
+			out grab_info_t grab_list[]
+			);
+
+
+	//2013.05.23 add by zhengxie
+	void get_user_grab_num_list(
+			string user_id,
+			uint32_t page,
+			uint32_t page_size,
+			out int32_t count,
+			out user_grab_number_t user_grab_num_list[]
+			);
+
+			void get_common_adv_info(
+			string id,
+			out string info
+			);
+
+	//2013.07.4 add by zhengxie
+	void get_pt_game_basic_list_by_game_id(
+			string game_id,
+			out int32_t count,
+			out pt_game_basic_info_t pt_game_basic_list[]
+			);
+
+	//2013.07.4 add by zhengxie
+	void get_pt_game_basic_list_by_app_key(
+			string app_key,
+			out int32_t count,
+			out pt_game_basic_info_t pt_game_basic_list[]
+			);
+
+	//2013.07.4 add by zhengxie
+	void get_pt_app_key_by_game_id(
+			string game_id,
+			out int32_t count,
+			out string app_key
+			);
+
+	//2013.07.4 add by zhengxie
+	void get_pt_game_id_by_app_key(
+			string app_key,
+			out int32_t count,
+			out string game_id
+			);
+
+	//2013.07.4 add by zhengxie
+	void exist_pt_game_by_game_id(
+			string game_id,
+			out int32_t flag
+			);
+
+	//2013.07.4 add by zhengxie
+	void is_same_pt_game(
+			string game_id,
+			string app_key,
+			string app_secret,
+			out int32_t flag
+			);
+	//2013.07.4 add by zhengxie
+	void remove_pt_game_basic_list_by_app_key(
+			string app_key,
+			out int32_t flag
+			);
+
+			void add_new_user_consume_record
+			(
+			    string imei_id,
+			    string order_id,
+			    string goods_id,
+			    string consume_date,
+			    string udid,
+			    out int32_t ret_code
+			);
+
+			void get_game_news_info_list(
+			    string game_id,
+			    string ov_id,
+			    string news_type,
+			    string date_limit,
+			    string game_imgtypes,
+			    uint32_t page,
+			    uint32_t page_size,
+			    out int32_t count,
+			    out game_news_info_t game_news_info_list[]
+			);
+
+			void get_game_news_entire_info
+			(
+			    string news_id,
+			    string game_id,
+			    string news_type,
+			    string date_limit,
+			    string order_type,
+			    string game_imgtypes,
+			    string channel_info,
+			    string channel_id,
+			    uint32_t page,
+			    uint32_t page_size,
+			    out int32_t count,
+			    out game_news_entire_info_t game_news_list[]
+			);
+
+			void get_netgame_activity_info
+			(
+			    string game_id,
+			    string act_id,
+			    string date_limit,
+			    string channel,
+			    string game_img_type,
+			    string act_img_type,
+			    uint32_t page,
+			    uint32_t page_size,
+			    out int32_t count,
+			    out netgame_activity_info_t result_list[]
+			);
+
+			void get_game_download_app_info(
+			    string c_id,
+			    string package_name,
+			    string dev_version_code,
+			    string dev_version,
+			    string apk_md5,
+			    string file_md5,//若想得到更新包，则为必填选项
+			    string game_img,
+				string filter, // {`channel_info`:`XXX;XXX;XXX`,`channel_id`:`XXX;XXX;XXX`}
+			    out uint32_t count,
+			    out game_update_download_info result_list[]
+			);
+            void get_game_dbapp_detail_info( //baidu.duoku.app
+			    string package_name,
+			    string game_img,
+				string filter, // {`channel_info`:`XXX;XXX;XXX`,`channel_id`:`XXX;XXX;XXX`}
+			    out uint32_t count,
+			    out game_update_download_info result_list[]
+			);
+
+			void get_device_download_games_info_by_udid(
+          string udid,
+          string img_types,
+          string filter, // {`channel_info`:`XXX;XXX;XXX`,`channel_id`:`XXX;XXX;XXX`}
+          out uint32_t count,
+          out game_content_download_info_t result_list[]
+			);
+
+			void add_device_download_game(
+			    string udid,
+			    string game_id,
+			    out int32_t ret_code
+			);
+
+			void get_game_content_info_list_ext(
+			    /*
+           *  类似 JSON 格式的输入参数
+           *  {`KEY_1`:`XXX;XXX;XXX`,`KEY_2`:`XXX;XXX;XXX`}
+			     *
+           *  目前支持的 KEY_X
+			     *  type_id, class_id, label_id, column_id,
+			     *  content_id, channel_id, channel_info,
+			     *  weight_order, img_type
+			     */
+			    string input,
+			    uint32_t page,
+			    uint32_t page_size,
+			    out uint32_t count,
+			    out game_content_download_info_t result_list[]
+			);
+
+			void get_game_currency_rate(
+			    string input,
+			    out game_dev_vir_currency_info currency_info
+			);
+
+			void get_game_download_info(string c_id,
+			                            string channel_info,
+			                            string channel_id,
+			                            out uint32_t count,
+			                            out download_detail_t download_list[]);
+
+      void get_game_news_without_pbus(
+            string info_id,
+            string c_id,
+            string info_type,
+            string game_type,
+            string date_limit,
+            uint32_t page,
+            uint32_t page_size,
+            out int32_t count,
+            out game_info_t game_info_list[]
+      );
+
+			//[s]add by zhengxie 2013.06.26 移动音乐基地接口
+			void get_mobile_music_info(
+				string name,
+				string singer,
+				string ring_id,
+				out uint32_t count,
+				out mobile_music_info_t music_list[]
+			);
+
+			void set_mobile_music_ptag_by_ring_id(
+				string ring_id,
+				string ptag,
+				out uint32_t result
+			);
+
+			void get_mobile_music_ring_id_by_ptag(
+				string ptag,
+				out string ring_id,
+				out uint32_t result
+			);
+			//[e]add by zhengxie 2013.06.26 移动音乐基地接口
+
+			//[s]add by zhengxie 2013.08.29 争霸赛接口
+			void get_championship_info(
+				uint32_t page,
+				uint32_t page_size,
+				out uint32_t count,
+				out championship_info_t championship_list[]
+			);
+			//[e]add by zhengxie 2013.08.29 争霸赛接口
+
+			//[s]add by zhengxie 2013.09.01 用户积分接口
+			void user_add_coins(
+				string user_id,
+				string game_id,
+				uint32_t opt,
+				out uint32_t result,
+				out uint32_t errorcode
+			);
+			//[e]add by zhengxie 2013.09.01 用户积分接口
+
+			//[s]add by zhengxie 2013.09.10 资讯
+			void get_game_news(
+				string info_id,
+				string c_id,
+				string info_type,
+				string game_type,
+				string date_limit,
+				uint32_t page,
+				uint32_t page_size,
+				out int32_t count,
+				out game_info_t_hall game_info_list[]
+			);
+			//[e]add by zhengxie 2013.09.10 资讯
+
+			void get_ip_province(
+				string ip,
+				out string ip_scope,
+				out int32_t province
+			);
+
+			//[s]add by zhengxie 2013.12.9 sdk帮助中心
+			void get_question_type_name(
+				uint32_t page,
+				uint32_t page_size,
+				out int32_t count,
+				out question_type_name_t question_type_name_list[]
+			);
+
+			void submit_question(
+				string user_id,
+				string c_id,
+				string question_type,
+				string question,
+				string phone,
+				out int32_t res
+			);
+
+			void get_user_question(
+				string user_id,
+				out int32_t count,
+				out user_question_answer_t user_question_answer_list[]
+			);
+			//[e]add by zhengxie 2013.12.9 sdk帮助中心
+
+			//棋牌大厅相关接口 beg
+			void get_qp_activity(
+				string id,
+				uint32_t page,
+				uint32_t page_size,
+				out int32_t count,
+				out qp_activity_t qp_activity_list[]
+			);
+
+			void get_qp_top_activity(
+				out int32_t count,
+				out qp_activity_t qp_activity_list[]
+			);
+
+			void get_qp_rule(
+				string type,
+				out int32_t count,
+				out string id,
+				out string rule,
+				out string describe,
+				out string button_text,
+				out string free_num
+			);
+
+			void get_qp_basic_info(
+				out int32_t count,
+				out string id,
+				out string bg_url,
+				out string bg_sound,
+				out string in_game_type,
+				out string in_game_url,
+				out string kudou_rank_rule,
+				out string prize_rank_rule,
+				out tie_ba_t tie_ba_list[]
+			);
+
+			void get_qp_activity_person(
+				string c_ids,
+				out int32_t res,
+				out int32_t total_person_num,
+				out qp_activity_person_t qp_activity_person_list[]
+			);
+
+			void get_person_award_list(
+				uint32_t page,
+				uint32_t page_size,
+				out int32_t res,
+				out int32_t count,
+				out person_award_info_t person_award_list[]
+			);
+
+			void get_person_all_awards(
+				uint32_t page,
+				uint32_t page_size,
+				string user_id,
+				out int32_t count,
+				out int32_t res,
+				out person_all_award_info_t person_all_award_list[]
+			);
+
+			void get_person_award(
+				string user_id,
+				out int32_t rank,
+				out int32_t count,
+				out int32_t res,
+				out person_award_info_t person_award_list[]
+			);
+
+			void get_award_list(
+				string award_channel,
+				uint32_t page_size,
+				out int32_t count,
+				out int32_t res,
+				out award_info_t award_list[]
+			);
+
+			void grab_award(
+				string user_id,
+				string award_channel,
+				out int32_t res,
+				out string user_id,
+				out award_info_t award_list[]
+				/*out string type,*/
+				//out string award_id,
+				//out string name,
+				//out string pic_name,
+				/*out string pic_url*/
+			);
+			//棋牌大厅相关接口 end
+			void test_redis(
+				out int32_t res,
+				out string num
+				/*out string type,*/
+				//out string award_id,
+				//out string name,
+				//out string pic_name,
+				/*out string pic_url*/
+			);
+
+            void use_exchange_code(
+                    int32_t userId,string gameId, string exchangeCodeId,
+                    //out result_cp resultCP
+                    out bool is_success,
+                    out int32_t code,
+                    out string message
+            );
+
+
+            // [e] add by gwj for new_refactory
+};
+
+service Notify{
+    void addSystemNotify(
+            string sourceId,
+            string titleId,
+            int32_t targetUid[],
+            string messageContent,
+            int32_t	bussiness ,
+            out bool resault		//TODO: result
+            );
+};
+
+// add by zhengxie
+service GameHallPoint{
+    void addGameHallScore(
+            int32_t userId,
+            int32_t opId,
+            out int32_t score
+            );
+};
+
+#endif

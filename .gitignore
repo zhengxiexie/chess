@@ -1,0 +1,17 @@
+*.a
+*.o
+*.swo
+*.swp
+*~
+core.*
+.svn
+trunk/log/
+trunk/conf/
+trunk/output/
+trunk/chess
+trunk/nohup.out
+trunk/info/
+trunk/data_release/syncBaiduAppInfo2Mongodb
+trunk/data_release/upiosmongodb
+trunk/data_release/upmongodb
+trunk/data_release/upstar
