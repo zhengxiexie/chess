@@ -2398,11 +2398,22 @@ int McpServlet::get_person_award_list(const idl::mcp_get_person_award_list_param
 	MCPContentPersonAward mcp_content_person_award("id");
 	mcp_content_person_award.set_unit_info(page_size, page);
 
+	OrderbyDecorator order_by_condition;
 
-	OrderbyDecorator priority_order;
-	priority_order.order_type = -1;
-	priority_order.add_field_filter_condition("priority", NULL);
-	award_compound_decor.add_primary_table_decorator(&priority_order);
+	order_by_condition.order_type = -1;
+	order_by_condition.add_field_filter_condition("priority", NULL);
+	order_by_condition.add_field_filter_condition("kudou", NULL);
+	award_compound_decor.add_primary_table_decorator(&order_by_condition);
+
+	//OrderbyDecorator priority_order;
+	//priority_order.order_type = -1;
+	//priority_order.add_field_filter_condition("priority", NULL);
+	//award_compound_decor.add_primary_table_decorator(&priority_order);
+
+	//OrderbyDecorator kudou_order;
+	//kudou_order.order_type = -1;
+	//kudou_order.add_field_filter_condition("kudou", NULL);
+	//award_compound_decor.add_primary_table_decorator(&kudou_order);
 
 	//SmallerThanDecorator smaller_logdate;
 	//smaller_logdate.add_field_filter_condition("date", "3000-09-20 15:05:00"); //logdate_order 是特殊的query，必须有常规的query，才能获取数据
@@ -2659,15 +2670,15 @@ do{
 
 	string award_id = "award_info_" + id;
 	string type="", start_time="", end_time="", store_num_s="", sell_num_s="", name="", prize_name="",
-		   prize_url="", auto_expired_type="", is_slyder="", icon="", func_desc="";
-	int store_num=0, sell_num=0;
+		   prize_url="", auto_expired_type="", is_slyder="", icon="", func_desc="", kudou="";
+	int store_num=0, sell_num=0, kudou_num=0;
 
 	reply = (redisReply *)redisCommand(c, "watch %s ", award_id.c_str());
 	FREE_REDIS_REPLY(reply)
 
-	reply = (redisReply *)redisCommand(c, "HMGET %s %s %s %s %s %s %s %s %s %s %s %s",
+	reply = (redisReply *)redisCommand(c, "HMGET %s %s %s %s %s %s %s %s %s %s %s %s %s",
 			award_id.c_str(), "type", "begin_time", "end_time", "store_num", "sell_num",
-			"name", "auto_expired_type", "is_slyder", "func_desc", "prize_url", "icon");
+			"name", "auto_expired_type", "is_slyder", "func_desc", "prize_url", "icon", "kudou");
 
     if(reply!=NULL)
 	{
@@ -2684,6 +2695,8 @@ do{
 		func_desc = reply->element[8]->str;
 		prize_url = reply->element[9]->str;
 		icon = reply->element[10]->str;
+		kudou = reply->element[11]->str;
+		kudou_num = atoi((char*)kudou.c_str());
 		store_num = atoi((char*)store_num_s.c_str());
 		sell_num = atoi((char*)sell_num_s.c_str());
 		freeReplyObject(reply);
@@ -2859,6 +2872,7 @@ do{
             props_user["user_id"]->set_value( user_id );
             props_user["commodity_id"]->set_value( id.c_str());
             props_user["award_channel"]->set_value( award_channel );
+            props_user["kudou"]->set_value( kudou_num );
 
             props_user.add_new_insert_transaction();
             bool ret = props_user.process_insert_transaction("default_mysql");
@@ -2886,6 +2900,7 @@ do{
             res = -11;
             break;
         }
+		mysql.commit();
     }
 
     DuokooMysql mysql("default_mysql");
@@ -2902,6 +2917,7 @@ do{
         res = -11;
         break;
     }
+	mysql.commit();
     //end将用户抢到的奖品信息入库
 
    /* if( strcmp(type.c_str(), "4") ){*/
