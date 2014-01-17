@@ -6,7 +6,6 @@
 core.*
 .svn
 trunk/log/
-trunk/conf/
 trunk/output/
 trunk/chess
 trunk/nohup.out

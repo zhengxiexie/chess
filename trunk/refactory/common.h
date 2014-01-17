@@ -572,7 +572,7 @@ public:
 #endif
 
 // 全局调试 log
-#define LOGD(...)  UB_LOG_NOTICE(__VA_ARGS__)
+#define LOGD(...)  //UB_LOG_NOTICE(__VA_ARGS__)
 
 // 从数据库中获取数据时的 log
 #define LOGG(...)  //UB_LOG_NOTICE(__VA_ARGS__)
