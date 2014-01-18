@@ -98,6 +98,7 @@ int CommunityClient::obtain_exchange_code(int32_t user_id,string number,int32_t 
         return -1;
     }else{
         bool success = pout.result_params().success();
+        UB_LOG_FATAL("CommunityClient call obtain_exchange_code success, user_id[%d] number[%s] commodity_id[%d] expired_time[%s] game_id[%d] [%s:%d]", user_id, number.c_str(), commodity_id, expired_time.c_str(), game_id.c_str(), __FILE__, __LINE__ );
         UB_LOG_TRACE("use_exchange_code return success[%d] ", success?1:0);
     }
     UB_LOG_NOTICE( "CommunityClient::obtain_exchange_code end" );

@@ -2403,6 +2403,7 @@ int McpServlet::get_person_award_list(const idl::mcp_get_person_award_list_param
 	order_by_condition.order_type = -1;
 	order_by_condition.add_field_filter_condition("priority", NULL);
 	order_by_condition.add_field_filter_condition("kudou", NULL);
+	order_by_condition.add_field_filter_condition("user_id", NULL);
 	award_compound_decor.add_primary_table_decorator(&order_by_condition);
 
 	//OrderbyDecorator priority_order;
@@ -2420,11 +2421,13 @@ int McpServlet::get_person_award_list(const idl::mcp_get_person_award_list_param
 	//award_compound_decor.add_primary_table_decorator(&smaller_logdate);
 
 	BiggerThanIntDecorator bigger_priority;
+	//bigger_priority.is_bigger_and_equal = true;
 	bigger_priority.add_field_filter_condition("priority", "0");
 	logic_or_decorator.add_primary_table_decorator(&bigger_priority);
 
 	BiggerThanIntDecorator bigger_kudou;
-	bigger_kudou.add_field_filter_condition("kudou", "500000");
+	//bigger_kudou.is_bigger_and_equal = true;
+	bigger_kudou.add_field_filter_condition("kudou", "499999");
 	logic_or_decorator.add_primary_table_decorator(&bigger_kudou);
 
 	award_compound_decor.add_primary_table_decorator(&logic_or_decorator);
@@ -2670,18 +2673,25 @@ do{
 
 	string award_id = "award_info_" + id;
 	string type="", start_time="", end_time="", store_num_s="", sell_num_s="", name="", prize_name="",
-		   prize_url="", auto_expired_type="", is_slyder="", icon="", func_desc="", kudou="";
+		   prize_url="", auto_expired_type="", is_slyder="", icon="", func_desc="", kudou="", game_id="";
 	int store_num=0, sell_num=0, kudou_num=0;
 
 	reply = (redisReply *)redisCommand(c, "watch %s ", award_id.c_str());
 	FREE_REDIS_REPLY(reply)
 
-	reply = (redisReply *)redisCommand(c, "HMGET %s %s %s %s %s %s %s %s %s %s %s %s %s",
+	reply = (redisReply *)redisCommand(c, "HMGET %s %s %s %s %s %s %s %s %s %s %s %s %s %s",
 			award_id.c_str(), "type", "begin_time", "end_time", "store_num", "sell_num",
-			"name", "auto_expired_type", "is_slyder", "func_desc", "prize_url", "icon", "kudou");
+			"name", "auto_expired_type", "is_slyder", "func_desc", "prize_url", "icon", "kudou", "game_id");
 
     if(reply!=NULL)
 	{
+		if( reply->elements != 13 )
+		{
+           LOGA("[zx] %s: UNKNOW ERROR! ELEMNETS is %d", __FUNCTION__, reply->elements);
+           res = -18; // redis 错误
+           FREE_REDIS_REPLY(reply)
+           break;
+        }
 		type = reply->element[0]->str;
 		start_time = reply->element[1]->str;
 		end_time = reply->element[2]->str;
@@ -2696,6 +2706,7 @@ do{
 		prize_url = reply->element[9]->str;
 		icon = reply->element[10]->str;
 		kudou = reply->element[11]->str;
+		game_id = reply->element[12]->str;
 		kudou_num = atoi((char*)kudou.c_str());
 		store_num = atoi((char*)store_num_s.c_str());
 		sell_num = atoi((char*)sell_num_s.c_str());
@@ -2749,17 +2760,17 @@ do{
 
 	//beg 如果奖品不是图片，则需要保证用户一天只抢一次奖品
 
-   /* string user_id_type = "user_id_award_type:" + string(user_id) + type;*/
-	//if( strcmp(type.c_str(), "4") ){
-		//reply = (redisReply*)redisCommand(c, "get %s", user_id_type.c_str());
-		//if( reply->type != REDIS_REPLY_NIL ) {
-			//res = -13;
-			//LOGA("[zx] %s: same user grab same award!", __FUNCTION__);
-			//FREE_REDIS_REPLY(reply)
-			//break;
-		//}
-		//FREE_REDIS_REPLY(reply)
-	//}
+   string user_id_type = "user_id_award_type:" + string(user_id) + type;
+	if( strcmp(type.c_str(), "4") ){
+		reply = (redisReply*)redisCommand(c, "get %s", user_id_type.c_str());
+		if( reply->type != REDIS_REPLY_NIL ) {
+			res = -13;
+			LOGA("[zx] %s: same user grab same award!", __FUNCTION__);
+			FREE_REDIS_REPLY(reply)
+			break;
+		}
+		FREE_REDIS_REPLY(reply)
+	}
 
 	//end 如果奖品不是图片，则需要保证用户一天只抢一次奖品
 
@@ -2884,49 +2895,49 @@ do{
             }
         }
 
-    if( !strcmp(type.c_str(), "1" ))
-    {
-        DuokooMysql mysql("default_mysql");
-        if(!mysql.startTransaction()){
-            res = -10;
-            break;
-        }
-        string query_sql="UPDATE `MCP`.`props_exchange_code` SET `type` = 1, `user_id` = \'" + string(user_id) + "\' WHERE `number` =\'" + num + "\' and commodity_id = " + id;
-        UB_LOG_DEBUG("query_sql:[%s]", query_sql.c_str());
-        int res=mysql.query(query_sql);
-        if(res<0){
-            LOGA("[zx] %s: update_transaction Error!", __FUNCTION__);
-            mysql.rollback();
-            res = -11;
-            break;
-        }
-		mysql.commit();
-    }
+    //if( !strcmp(type.c_str(), "1" ))
+    //{
+        //DuokooMysql mysql("default_mysql");
+        /*if(!mysql.startTransaction()){*/
+            //res = -10;
+            //break;
+        /*}*/
+    /*    string query_sql="UPDATE `MCP`.`props_exchange_code` SET `type` = 1, `user_id` = \'" + string(user_id) + "\' WHERE `number` =\'" + num + "\' and commodity_id = " + id;*/
+        //UB_LOG_DEBUG("query_sql:[%s]", query_sql.c_str());
+        //int res=mysql.query(query_sql);
+        //if(res<0){
+            //LOGA("[zx] %s: update_transaction Error!", __FUNCTION__);
+            ////mysql.rollback();
+            //res = -11;
+            //break;
+        //}
+	   //mysql.commit();
+    //}
 
-    DuokooMysql mysql("default_mysql");
-    if(!mysql.startTransaction()){
-        res = -10;
-        break;
-    }
-    string query_sql = "UPDATE `MCP`.`props_commodity` SET `sell_num` = sell_num + 1  WHERE `id` = " + id;
-    UB_LOG_DEBUG("query_sql:[%s]", query_sql.c_str());
-    int res=mysql.query(query_sql);
-    if(res<0){
-        LOGA("[zx] %s: update_transaction Error!", __FUNCTION__);
-        mysql.rollback();
-        res = -11;
-        break;
-    }
-	mysql.commit();
+    //DuokooMysql mysql("default_mysql");
+    /*if(!mysql.startTransaction()){*/
+        //res = -10;
+        //break;
+    /*}*/
+   /* string query_sql = "UPDATE `MCP`.`props_commodity` SET `sell_num` = sell_num + 1  WHERE `id` = " + id;*/
+    //UB_LOG_DEBUG("query_sql:[%s]", query_sql.c_str());
+    //int res=mysql.query(query_sql);
+    //if(res<0){
+        /*LOGA("[zx] %s: update_transaction Error!", __FUNCTION__);*/
+        //mysql.rollback();
+        //res = -11;
+        //break;
+    //}
+	//mysql.commit();
     //end将用户抢到的奖品信息入库
 
-   /* if( strcmp(type.c_str(), "4") ){*/
-        //reply = (redisReply*)redisCommand(c, "SETNX %s %s", user_id_type.c_str(), "true");
-        //FREE_REDIS_REPLY(reply)
+   if( strcmp(type.c_str(), "4") ){
+		reply = (redisReply*)redisCommand(c, "SETNX %s %s", user_id_type.c_str(), "true");
+		FREE_REDIS_REPLY(reply)
 
-            //reply = (redisReply*)redisCommand(c, "EXPIRE %s %ld", user_id_type.c_str(), 24*60*60);
-        //FREE_REDIS_REPLY(reply)
-    //}
+		reply = (redisReply*)redisCommand(c, "EXPIRE %s %ld", user_id_type.c_str(), 24*60*60);
+		FREE_REDIS_REPLY(reply)
+	}
 
     //end 如果奖品不是图片，则需要保证用户一天只抢一次奖品
 
@@ -2963,7 +2974,7 @@ do{
         ss << tt;
         string time_stamp = ss.str();
 
-        res = community_client.obtain_exchange_code(userId, num, id2middle, time_stamp, expiredType, "0", bRes);
+        res = community_client.obtain_exchange_code(userId, num, id2middle, time_stamp, expiredType, game_id.c_str(), bRes);
         if(res == 0)
         {
             LOGA("obtain_exchange_code success %d num is %s", res, num.c_str());
